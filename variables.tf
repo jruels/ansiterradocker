@@ -1,4 +1,4 @@
-##Testing jenkins-automation
+##Testing jenkins
 ##General vars
 variable "ssh_user" {
   default = "ubuntu"
