@@ -1,5 +1,5 @@
 - name: Install Ansible Prereqs
-  hosts: tag_Role_swarm-master:&tag_role_swarm-member
+  hosts: tag_role_swarm_member
   gather_facts: no
   tasks:
     - raw: "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y python-minimal python-pip"
