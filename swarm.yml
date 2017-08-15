@@ -1,11 +1,11 @@
 - name: Install Ansible Prereqs
-  hosts: tag_role_swarm-master:tag_role_swarm-member
+  hosts: tag_Role_swarm-master:&tag_role_swarm-member
   gather_facts: no
   tasks:
     - raw: "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y python-minimal python-pip"
 
 - name: Install Docker Prereqs
-  hosts: tag_role_swarm-master:tag_role_swarm-member 
+  hosts: tag_role_swarm-master:&tag_role_swarm-member 
   gather_facts: yes
   tasks:
     - package:
@@ -24,7 +24,7 @@
         state: present
 
 - name: Install Docker
-  hosts: tag_role_swarm-master:tag_role_swarm-member
+  hosts: tag_role_swarm-master:&tag_role_swarm-member
   gather_facts: yes
   tasks:
     - package:
@@ -45,7 +45,7 @@
     - set_fact: swarmtoken="{{swarm_token.stdout}}"
   
 - name: Join Swarm Nodes
-  hosts: tag_role_swarm-member
+  hosts: role_swarm-member
   gather_facts: yes
   tasks:
   - command: "docker swarm join --advertise-addr {{inventory_hostname}} --token {{hostvars[groups['swarm-master'][0]].swarmtoken}} {{hostvars[groups['swarm-master'][0]].inventory_hostname}}:2377"
