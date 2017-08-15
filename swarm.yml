@@ -1,13 +1,15 @@
+- hosts: all
+  remote_user: ubuntu
+  become: yes
+
 - name: Install Ansible Prereqs
   hosts: tag_role_swarm_member:tag_role_swarm_master
-  remote_user: ubuntu
   gather_facts: no
   tasks:
     - raw: "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y python-minimal python-pip"
 
 - name: Install Docker Prereqs
   hosts: tag_role_swarm_master:tag_role_swarm_member 
-  remote_user: ubuntu
   gather_facts: yes
   tasks:
     - package:
@@ -27,7 +29,6 @@
 
 - name: Install Docker
   hosts: tag_role_swarm_master:tag_role_swarm_member
-  remote_user: ubuntu
   gather_facts: yes
   tasks:
     - package:
@@ -40,7 +41,6 @@
 
 - name: Initialize Swarm Master
   hosts: tag_role_swarm_master
-  remote_user: ubuntu
   gather_facts: yes
   tasks:
     - command: "docker swarm init --advertise-addr {{inventory_hostname}}"
@@ -50,7 +50,6 @@
   
 - name: Join Swarm Nodes
   hosts: role_swarm_member
-  remote_user: ubuntu
   gather_facts: yes
   tasks:
   - command: "docker swarm join --advertise-addr {{inventory_hostname}} --token {{hostvars[groups['swarm-master'][0]].swarmtoken}} {{hostvars[groups['swarm-master'][0]].inventory_hostname}}:2377"
