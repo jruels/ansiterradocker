@@ -73,6 +73,7 @@ resource "aws_instance" "swarm-master" {
   key_name               = "${var.aws_key_name}"
   tags {
     Name = "swarm-master"
+    role = "swarm-master"
   }
 }
 
@@ -86,5 +87,6 @@ resource "aws_instance" "aws-swarm-members" {
   count                  = "${var.aws_worker_count}"
   tags {
     Name = "swarm-member-${count.index}"
+    role = "swarm-member"
   }
 }
