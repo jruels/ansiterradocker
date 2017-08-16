@@ -98,7 +98,7 @@ resource "null_resource" "waiting-for-instance" {
     connection {
         type = "ssh"
         user = "ubuntu"
-        private_key = "${var.private_key_path}"
+        private_key = "${file(var.private_key_path)}"
   }
 
     provisioner "local-exec" {
