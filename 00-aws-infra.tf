@@ -95,6 +95,11 @@ resource "null_resource" "waiting-for-instance" {
     provisioner "remote-exec" {
         script = "scripts/wait_for_instance.sh"
   }
+    connection {
+        type = "ssh"
+        user = "ubuntu"
+        private_key = "${private_key_path}"
+  }
 
     provisioner "local-exec" {
         command = "ansible-playbook -i inventory/ -b swarm.yml"
