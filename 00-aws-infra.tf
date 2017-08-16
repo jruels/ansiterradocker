@@ -91,19 +91,13 @@ resource "aws_instance" "swarm-members" {
   }
 }
 
-resource "null_resource" "waiting-for-instance" {
-    provisioner "remote-exec" {
-        script = "scripts/wait_for_instance.sh"
-  }
-    connection {
-        type = "ssh"
-        user = "ubuntu"
-        private_key = "${file(var.private_key_path)}"
-  }
+resource "null_resource" "ansible-time" {
+    
 
     provisioner "local-exec" {
         command = "ansible-playbook -i inventory/ -b swarm.yml"
   }
 }
+
 
 
