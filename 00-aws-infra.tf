@@ -65,7 +65,7 @@ data "aws_ami" "ubuntu" {
 }
 
 ##Create Swarm Master Instance
-resource "aws_instance" "swarm-master" {
+resource "aws_instance" "aws-swarm-master" {
   depends_on             = ["aws_security_group.swarm_sg"]
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "${var.aws_instance_size}"
@@ -78,7 +78,7 @@ resource "aws_instance" "swarm-master" {
 }
 
 ##Create AWS Swarm Workers
-resource "aws_instance" "aws-swarm-members" {
+resource "aws_instance" "swarm-members" {
   depends_on             = ["aws_security_group.swarm_sg"]
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "${var.aws_instance_size}"
@@ -90,3 +90,11 @@ resource "aws_instance" "aws-swarm-members" {
     role = "swarm-member"
   }
 }
+
+provisioner "remote-exec" {
+        script = "scripts/wait_for_instance.sh"
+    }
+
+    provisioner "local-exec" {
+        command = "ansible-playbook -i inventory/ -b swarm.yml"
+    }
