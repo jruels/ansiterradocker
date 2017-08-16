@@ -91,7 +91,7 @@ resource "aws_instance" "swarm-members" {
   }
 }
 
-resource "null_resource" "waiting for instance" {
+resource "null_resource" "waiting-for-instance" {
     provisioner "remote-exec" {
         script = "scripts/wait_for_instance.sh"
   }
