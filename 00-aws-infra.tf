@@ -92,9 +92,9 @@ resource "aws_instance" "swarm-members" {
 }
 
 provisioner "remote-exec" {
-        script = "scripts/wait_for_instance.sh"
-    }
+   script = "scripts/wait_for_instance.sh"
+}
 
-    provisioner "local-exec" {
-        command = "ansible-playbook -i inventory/ -b swarm.yml"
-    }
+provisioner "local-exec" {
+   command = "ansible-playbook -i inventory/ -b swarm.yml"
+}
