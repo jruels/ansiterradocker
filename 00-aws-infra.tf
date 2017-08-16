@@ -95,7 +95,7 @@ resource "null_resource" "ansible-time" {
     
 
     provisioner "local-exec" {
-        command = "ansible-playbook -i inventory/ -b swarm.yml"
+        command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory/ -b swarm.yml"
   }
 }
 
