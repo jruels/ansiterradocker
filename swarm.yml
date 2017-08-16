@@ -53,4 +53,4 @@
   remote_user: ubuntu
   gather_facts: yes
   tasks:
-  - command: "docker swarm join --advertise-addr {{inventory_hostname}} --token {{group_vars[groups['tag_role_swarm_master'][0]].swarmtoken}} {{group_vars[groups['tag_role_swarm_master'][0]].inventory_hostname}}:2377"
+  - command: "docker swarm join --advertise-addr {{inventory_hostname}} --token {{hostvars[groups['tag_role_swarm_master'][0]].swarmtoken}} {{hostvars[groups['tag_role_swarm_master'][0]].inventory_hostname}}:2377"
