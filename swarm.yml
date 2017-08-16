@@ -1,3 +1,6 @@
+- name: Refresh inventory to ensure new instaces exist in inventory
+  meta: refresh_inventory
+
 - name: Install Ansible Prereqs
   hosts: tag_role_swarm_member:tag_role_swarm_master
   remote_user: ubuntu
