@@ -1,9 +1,9 @@
-- name: Refresh inventory to ensure new instaces exist in inventory
-  hosts: all
-  remote_user: ubuntu
-  gather_facts: no
-  tasks:
-  - meta: refresh_inventory
+#- name: Refresh inventory to ensure new instaces exist in inventory
+#  hosts: all
+#  remote_user: ubuntu
+#  gather_facts: no
+#  tasks:
+#  - meta: refresh_inventory
 
 - name: Install Ansible Prereqs
   hosts: tag_role_swarm_member:tag_role_swarm_master

@@ -92,12 +92,10 @@ resource "aws_instance" "swarm-members" {
 }
 
 resource "null_resource" "ansible-time" {
+  depends_on = ["aws_instance.swarm-members"]
     
-
     provisioner "local-exec" {
-        command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory/ -b swarm.yml"
+        command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory/ -b swarm.yml"
   }
 }
-
-
 
