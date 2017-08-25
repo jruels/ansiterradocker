@@ -4,8 +4,18 @@ node('master') {
         checkout scm
     }
 
-    stage('deploy') {
-        sh "ansible-playbook -i ./inventory swarm.yml"
-        sh "echo 'DEPLOYING DOCKER SWARM'"
-       }
+//    stage('deploy') {
+//        sh "ansible-playbook -i ./inventory swarm.yml"
+//        sh "echo 'DEPLOYING DOCKER SWARM'"
+//       }
+     stage('deploying')
+
+      wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
+        ansiblePlaybook(
+            playbook: 'swarm.yml',
+            inventory: 'inventory',
+            colorized: true)
+    }
 }
+
+
