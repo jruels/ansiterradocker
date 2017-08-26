@@ -91,11 +91,12 @@ resource "aws_instance" "swarm-members" {
   }
 }
 
-resource "null_resource" "ansible-time" {
-  depends_on = ["aws_instance.swarm-members"]
+##Running in Jenkins job so not required.
+##resource "null_resource" "ansible-time" {
+ ## depends_on = ["aws_instance.swarm-members"]
     
-    provisioner "local-exec" {
-        command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory/ -b swarm.yml"
-  }
-}
+ ##   provisioner "local-exec" {
+  ##      command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory/ -b swarm.yml"
+ ## }
+##}
 
