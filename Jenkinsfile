@@ -1,5 +1,5 @@
-def _env_vars = env_vars.tokenize()
-withEnv(_env_vars) {
+def _aws_creds = aws_creds.tokenize()
+withEnv(_aws_creds) {
 node('master') {
     stage('build') {
          // Checkout the app at the given commit sha from the webhook
