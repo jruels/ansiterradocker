@@ -4,18 +4,18 @@ node('master') {
         checkout scm
     }
 
-    stage('deploy') {
-        sh "/var/jenkins_home/.local/bin/ansible-playbook -i ./inventory swarm.yml"
-        sh "echo 'DEPLOYING DOCKER SWARM'"
-       }
-//     stage('deploying')
+//    stage('deploy') {
+//        sh "/var/jenkins_home/.local/bin/ansible-playbook -i ./inventory swarm.yml"
+//        sh "echo 'DEPLOYING DOCKER SWARM'"
+//       }
+     stage('deploying')
 
-//      wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
-//        ansiblePlaybook(
-//            playbook: 'swarm.yml',
-//            inventory: 'inventory',
-//            colorized: true)
-//    }
+      wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
+        ansiblePlaybook(
+            playbook: 'swarm.yml',
+            inventory: './inventory',
+            colorized: true)
+    }
 }
 
 
