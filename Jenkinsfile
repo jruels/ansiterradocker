@@ -16,8 +16,12 @@ node('master') {
       wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
         ansiblePlaybook(
             playbook: 'swarm.yml',
+            sudo(true),
             inventory: './inventory',
-            colorized: true)
+            colorized: true,
+            extraVars: [
+            login: 'mylogin'
+       ])
       }
      }
   }
