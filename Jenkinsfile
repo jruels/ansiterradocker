@@ -6,22 +6,22 @@ node('master') {
         checkout scm
     }
 
-//    stage('deploy') {
-//        sh "/var/jenkins_home/.local/bin/ansible-playbook -i ./inventory swarm.yml"
-//        sh "echo 'DEPLOYING DOCKER SWARM'"
-//       }
-     stage('deploying') {
+    stage('deploy') {
      sshagent ([aws_creds_key]) {
+        sh "ansible-playbook -i -b -u ubuntu ./inventory swarm.yml"
+        sh "echo 'DEPLOYING DOCKER SWARM'"
+       }
+//     stage('deploying') {
 
-      wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
-        ansiblePlaybook(
-            playbook: 'swarm.yml',
-            sudo(true),
-            inventory: './inventory',
-            colorized: true,
-            extraVars: [
-            login: 'mylogin'
-       ])
+//      wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
+//        ansiblePlaybook(
+//            playbook: 'swarm.yml',
+//            sudo(true),
+//            inventory: './inventory',
+//            colorized: true,
+//            extraVars: [
+//            login: 'mylogin'
+//       ])
       }
      }
   }
