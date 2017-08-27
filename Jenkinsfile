@@ -8,7 +8,7 @@ node('master') {
 
     stage('deploy') {
      sshagent ([aws_creds_key]) {
-        sh "ansible-playbook -i -b -u ubuntu ./inventory swarm.yml"
+        sh "ansible-playbook -b -u ubuntu -i ./inventory swarm.yml"
         sh "echo 'DEPLOYING DOCKER SWARM'"
        }
     }
