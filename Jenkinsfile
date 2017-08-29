@@ -6,9 +6,17 @@ node('master') {
         checkout scm
     }
 
+    stage('waiting for AWS...') {
+      sshagent ([aws_creds_key]) {
+        sh "echo 'SLEEPING 30 seconds'"
+        sh "sleep 30"
+
+      }
+    }
+
     stage('deploy') {
      sshagent ([aws_creds_key]) {
-        sh "sleep 30; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -b -u ubuntu -i ./inventory swarm.yml"
+        sh "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -b -u ubuntu -i ./inventory swarm.yml"
         sh "echo 'DEPLOYING DOCKER SWARM'"
        }
     }
