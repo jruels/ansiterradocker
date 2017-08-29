@@ -24,6 +24,9 @@ variable "aws_region" {
 variable "aws_vpc_id" {
   default = "vpc-13845577"
 }
+variable "aws_subnet_id" {
+  default = "subnet-24a4b753"
+}
 ##GCE Specific Vars
 variable "gce_worker_count" {
   default = 1
