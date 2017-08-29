@@ -8,7 +8,7 @@ node('master') {
 
     stage('deploy') {
      sshagent ([aws_creds_key]) {
-        sh "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -b -u ubuntu -i ./inventory swarm.yml"
+        sh "sleep 30; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -b -u ubuntu -i ./inventory swarm.yml"
         sh "echo 'DEPLOYING DOCKER SWARM'"
        }
     }
