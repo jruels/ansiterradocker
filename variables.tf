@@ -1,26 +1,25 @@
-##Testing jenkins-automation
 ##General vars
 variable "ssh_user" {
   default = "ubuntu"
 }
 variable "public_key_path" {
-  default = "/Users/jruels/.ssh/id_rsa.pub"
+  default = "/Users/jruels/.ssh/halo_dev.pem"
 }
 variable "private_key_path" {
-  default = "/Users/jruels/.ssh/id_rsa"
+  default = "/Users/jruels/.ssh/halo_dev.pem"
 }
 ##AWS Specific Vars
 variable "aws_worker_count" {
   default = 2
 }
 variable "aws_key_name" {
-  default = "jruels"
+  default = "jason"
 }
 variable "aws_instance_size" {
   default = "t2.micro"
 }
 variable "aws_region" {
-  default = "us-west-1"
+  default = "us-east-1"
 }
 ##GCE Specific Vars
 variable "gce_worker_count" {
