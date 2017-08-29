@@ -3,10 +3,10 @@ variable "ssh_user" {
   default = "ubuntu"
 }
 variable "public_key_path" {
-  default = "/Users/jruels/.ssh/halo_dev.pem"
+  default = "/home/jenkins/.ssh/halo_dev.pem"
 }
 variable "private_key_path" {
-  default = "/Users/jruels/.ssh/halo_dev.pem"
+  default = "/home/jenkins/.ssh/halo_dev.pem"
 }
 ##AWS Specific Vars
 variable "aws_worker_count" {
