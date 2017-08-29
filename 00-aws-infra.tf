@@ -67,6 +67,7 @@ data "aws_ami" "ubuntu" {
 
 ##Create Swarm Master Instance
 resource "aws_instance" "aws-swarm-master" {
+  vpc_id            = "${var.aws_vpc_id}"
   depends_on             = ["aws_security_group.swarm_sg"]
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "${var.aws_instance_size}"
@@ -80,6 +81,7 @@ resource "aws_instance" "aws-swarm-master" {
 
 ##Create AWS Swarm Workers
 resource "aws_instance" "swarm-members" {
+  vpc_id            = "${var.aws_vpc_id}"
   depends_on             = ["aws_security_group.swarm_sg"]
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "${var.aws_instance_size}"
