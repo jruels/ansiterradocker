@@ -3,17 +3,17 @@ variable "ssh_user" {
   default = "ubuntu"
 }
 variable "public_key_path" {
-  default = "/var/lib/jenkins/.ssh/halo_dev.pem"
+  default = "/var/lib/jenkins/.ssh/jenkins.pem"
 }
 variable "private_key_path" {
-  default = "/var/lib/jenkins/.ssh/halo_dev.pem"
+  default = "/var/lib/jenkins/.ssh/jenkins.pem"
 }
 ##AWS Specific Vars
 variable "aws_worker_count" {
   default = 2
 }
 variable "aws_key_name" {
-  default = "jason"
+  default = "jenkins"
 }
 variable "aws_instance_size" {
   default = "t2.micro"
