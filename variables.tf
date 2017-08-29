@@ -21,6 +21,9 @@ variable "aws_instance_size" {
 variable "aws_region" {
   default = "us-east-1"
 }
+variable "aws_vpc_id" {
+  default = "vpc-13845577"
+}
 ##GCE Specific Vars
 variable "gce_worker_count" {
   default = 1

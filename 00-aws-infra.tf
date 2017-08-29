@@ -6,6 +6,7 @@ provider "aws" {
 ##Create swarm security group
 resource "aws_security_group" "swarm_sg" {
   name        = "swarm_sg"
+  vpc_id            = "${var.aws_vpc_id}"
   description = "Allow all inbound traffic necessary for Swarm"
   ingress {
     from_port   = 22
