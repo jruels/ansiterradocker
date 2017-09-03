@@ -37,7 +37,7 @@
   remote_user: ubuntu
   gather_facts: yes
   handlers:
-    - includes: roles/handlers/main.yml
+    - include: roles/handlers/main.yml
   tasks:
     - package:
         name: "docker-ce"
