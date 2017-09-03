@@ -48,8 +48,7 @@
         src: daemon.json
         dest: /etc/docker/daemon.json
         mode: 0600
-
-
+      notify: restart docker
 
 - name: Initialize Swarm Master
   hosts: tag_role_swarm_master
