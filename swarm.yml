@@ -36,6 +36,8 @@
   hosts: tag_role_swarm_master:tag_role_swarm_member
   remote_user: ubuntu
   gather_facts: yes
+  handlers:
+    - includes: roles/handlers/main.yml
   tasks:
     - package:
         name: "docker-ce"
