@@ -1,8 +1,3 @@
-##Amazon Infrastructure
-provider "aws" {
-  region = "${var.aws_region}"
-}
-
 ##Create applications security group
 resource "aws_security_group" "app_sg" {
   name        = "app_sg"
@@ -19,6 +14,12 @@ resource "aws_security_group" "app_sg" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+      from_port   = 8083
+      to_port     = 8083
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
   }
   
   tags {
