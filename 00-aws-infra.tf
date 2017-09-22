@@ -80,7 +80,7 @@ data "aws_ami" "ubuntu" {
 ##Create Swarm Master Instance
 resource "aws_instance" "aws-swarm-master" {
   subnet_id              = "${var.aws_subnet_id}"
-  depends_on             = ["aws_security_group.swarm_sg","aws_security_group.app_sg"]
+  depends_on             = ["aws_security_group.swarm_sg"]
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "${var.aws_instance_size}"
   vpc_security_group_ids = ["${aws_security_group.swarm_sg.id}"]
@@ -94,7 +94,7 @@ resource "aws_instance" "aws-swarm-master" {
 ##Create AWS Swarm Workers
 resource "aws_instance" "swarm-members" {
   subnet_id              = "${var.aws_subnet_id}"
-  depends_on             = ["aws_security_group.swarm_sg","aws_security_group.app_sg"]
+  depends_on             = ["aws_security_group.swarm_sg"]
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "${var.aws_instance_size}"
   vpc_security_group_ids = ["${aws_security_group.swarm_sg.id}"]
