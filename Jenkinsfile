@@ -22,15 +22,3 @@ node('master') {
     }
   }
 }
-//     stage('deploying') {
-
-//      wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
-//        ansiblePlaybook(
-//            playbook: 'swarm.yml',
-//            sudo(true),
-//            inventory: './inventory',
-//            colorized: true,
-//            extraVars: [
-//            login: 'mylogin'
-//       ])
-
